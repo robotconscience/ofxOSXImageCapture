@@ -1,0 +1,20 @@
+*.mode*
+build/
+obj/
+*.o
+openFrameworks.a
+openFrameworksDebug.a
+openFrameworksUniversal.a
+*.app/
+
+.DS_Store
+
+#rule to avoid non-official addons going into git
+#see addons/.gitignore
+addons/**
+
+#xcode files
+*.pbxuser
+*.perspectivev3
+*.xcuserdata
+xcuserdata/
