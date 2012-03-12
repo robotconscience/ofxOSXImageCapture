@@ -15,7 +15,7 @@
 
 @interface CameraDelegate : NSObject
 // Create delegates for the device browser and camera device classes.
-<ICDeviceDelegate, ICCameraDeviceDelegate, ICCameraDeviceDownloadDelegate> {
+<ICDeviceDelegate, ICCameraDeviceDelegate> {
     
     BOOL    bReady;
     BOOL    bTakingPhotos;
