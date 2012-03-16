@@ -48,7 +48,13 @@ ofxOSXImageCapture::Camera *    ofCamera = NULL;
 - (void)cameraDevice:(ICCameraDevice*)camera didAddItem:(ICCameraItem*)item {
     if (ofCamera != NULL){
         if (ofCamera->isTakingPicture()){
-            NSDictionary* options = [NSDictionary dictionaryWithObject:[NSURL fileURLWithPath:[NSString stringWithUTF8String:((string)ofToDataPath("", true)).c_str()]] forKey:ICDownloadsDirectoryURL];
+            
+            NSMutableDictionary* options = [NSMutableDictionary dictionaryWithObject:[NSURL fileURLWithPath:[NSString stringWithUTF8String:((string)ofToDataPath("", true)).c_str()]] forKey:ICDownloadsDirectoryURL];                             
+            if (ofCamera->getDeleteAfterDownload()){
+                [options setObject:[NSNumber numberWithBool:YES] forKey:ICDeleteAfterSuccessfulDownload];
+            } else {
+                [options setObject:[NSNumber numberWithBool:NO] forKey:ICDeleteAfterSuccessfulDownload];
+            }
             
             ofCamera->capturedImage( item );
             
@@ -135,6 +141,22 @@ namespace ofxOSXImageCapture {
     bool Camera::canTakePicture(){
         if (!bActive) return false;
         return [cocoaCamera.capabilities containsObject:ICCameraDeviceCanTakePicture];
+    }
+   
+    //--------------------------------------------------------------
+    bool Camera::canDeletePicture(){
+        if (!bActive) return false;
+        return [cocoaCamera.capabilities containsObject:ICCameraDeviceCanDeleteOneFile];
+    }
+    
+    //--------------------------------------------------------------
+    bool Camera::getDeleteAfterDownload(){
+        return bDeleteAfterDownload;
+    };
+    
+    //--------------------------------------------------------------
+    void Camera::setDeleteAfterDownload( bool del ){
+        bDeleteAfterDownload = del;
     }
     
     //--------------------------------------------------------------

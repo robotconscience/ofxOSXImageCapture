@@ -43,6 +43,10 @@ namespace ofxOSXImageCapture {
         bool isReady();
         bool isTakingPicture();
         bool canTakePicture();
+        bool canDeletePicture();
+        
+        bool getDeleteAfterDownload();
+        void setDeleteAfterDownload( bool del );
         
         // get all images taken since opening the camera
         vector <string> getImages();
@@ -67,7 +71,7 @@ namespace ofxOSXImageCapture {
         
         vector <string> downloadedImages;
         
-        bool bOpen, bOpening, bClosing, bActive, bTakingPicture;
+        bool bOpen, bOpening, bClosing, bActive, bTakingPicture, bDeleteAfterDownload;
         string currentImage;
         ICCameraDevice * cocoaCamera;
     };
