@@ -57,8 +57,9 @@ ofxOSXImageCapture::Camera *    ofCamera = NULL;
             }
             
             ofCamera->capturedImage( item );
-            
-            [camera requestDownloadFile:item options:options downloadDelegate:self didDownloadSelector:@selector(didDownloadFile:error:options:contextInfo:) contextInfo:NULL];
+            // (ICCameraFile*)file options:(NSDictionary*)options downloadDelegate:(id)downloadDelegate didDownloadSelector:(SEL)selector contextInfo:(void*)contextInfo
+            [camera requestDownloadFile:(ICCameraFile*)item options:options downloadDelegate:self didDownloadSelector:@selector(didDownloadFile:error:options:contextInfo:) contextInfo:NULL];
+            //[camera requestDownloadFile:item options:options downloadDelegate:self didDownloadSelector:@selector(didDownloadFile:error:options:contextInfo:) contextInfo:NULL];
         } else {
             ofCamera->foundImage( item );
         }

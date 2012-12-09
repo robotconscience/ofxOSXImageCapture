@@ -7,6 +7,7 @@ openFrameworksDebug.a
 openFrameworksUniversal.a
 *.app/
 
+DerivedData
 .DS_Store
 
 #rule to avoid non-official addons going into git
